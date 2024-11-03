@@ -23,16 +23,13 @@
 
 #define MAX_IMAGE_BUFFER_NUMBER    100
 
-//#include <fstream>
-//extern std::ofstream ofTest;
-
 extern bool        g_bTransferError;
 extern bool        g_bUsingIMUCallback;
 extern uint16_t    g_uiTailIndex;
 extern uint16_t    g_uiHeadIndex;
 extern uint32_t    g_uiPackageCount;
 extern CPackage    g_PackageList[MAX_IMAGE_BUFFER_NUMBER];
-//
+
 extern std::vector<IMURawData>    g_IMURawDataList;
 extern std::mutex                 g_mtxSensorData;
 

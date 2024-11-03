@@ -15,7 +15,6 @@
 */
 
 #include <stdio.h>
-#include <iostream>
 #include <chrono>
 #ifdef __linux__
 #include <semaphore.h>

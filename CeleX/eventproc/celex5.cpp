@@ -16,7 +16,6 @@
 
 #include <iostream>
 #include <cstring>
-#include <thread>
 #include <algorithm>
 #include "../include/celex5/celex5.h"
 #include "../cx3driver/celedriver.h"

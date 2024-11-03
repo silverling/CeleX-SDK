@@ -20,7 +20,6 @@
 #include <stdint.h>
 #include <vector>
 #include <map>
-#include <list>
 #include <fstream>
 #include <opencv2/opencv.hpp>
 #include "../celextypes.h"

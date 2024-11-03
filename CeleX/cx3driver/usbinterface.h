@@ -25,7 +25,8 @@
 #include <windows.h>
 #include <process.h>
 #endif
-#include "bulktransfer.h"
+#include "package.h"
+#include "libusb.h"
 
 #define MAX_URB_NUMBER       20
 #define MAX_URB_NUMBER_IMU   20

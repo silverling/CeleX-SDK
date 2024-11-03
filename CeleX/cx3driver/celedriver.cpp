@@ -14,15 +14,13 @@
 * limitations under the License.
 */
 
-#include <string.h>
-#include <stdio.h>
+#include "bulktransfer.h"
 #include "cypress.h"
 #include "celedriver.h"
 
 CeleDriver::CeleDriver(void)
 {
 	m_pCypress = new Cypress;
-	//ofTest.open("index.txt");
 }
 
 CeleDriver::~CeleDriver(void)

@@ -14,7 +14,6 @@
 * limitations under the License.
 */
 
-#include <iostream>
 #include "dataprocessthread.h"
 
 DataProcessThread::DataProcessThread(const std::string &name)
