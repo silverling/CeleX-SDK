@@ -1,0 +1,8 @@
+# MacOS Cache
+.DS_Store
+
+# Build cache
+build/
+
+# Editor files
+.vscode/
