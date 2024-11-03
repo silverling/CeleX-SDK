@@ -19,7 +19,7 @@
 
 #include <mutex>
 #include "package.h"
-#include "../cx3driver/include/libusb.h"
+#include "libusb.h"
 
 #define MAX_IMAGE_BUFFER_NUMBER    100
 
