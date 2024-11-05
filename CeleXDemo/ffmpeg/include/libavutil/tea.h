@@ -37,9 +37,9 @@ extern const int av_tea_size;
 struct AVTEA;
 
 /**
-  * Allocate an AVTEA context
-  * To free the struct: av_free(ptr)
-  */
+ * Allocate an AVTEA context
+ * To free the struct: av_free(ptr)
+ */
 struct AVTEA *av_tea_alloc(void);
 
 /**
@@ -61,8 +61,7 @@ void av_tea_init(struct AVTEA *ctx, const uint8_t key[16], int rounds);
  * @param iv initialization vector for CBC mode, if NULL then ECB will be used
  * @param decrypt 0 for encryption, 1 for decryption
  */
-void av_tea_crypt(struct AVTEA *ctx, uint8_t *dst, const uint8_t *src,
-                  int count, uint8_t *iv, int decrypt);
+void av_tea_crypt(struct AVTEA *ctx, uint8_t *dst, const uint8_t *src, int count, uint8_t *iv, int decrypt);
 
 /**
  * @}

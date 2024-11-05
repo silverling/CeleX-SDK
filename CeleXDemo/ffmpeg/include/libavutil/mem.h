@@ -31,8 +31,8 @@
 #include <stdint.h>
 
 #include "attributes.h"
-#include "error.h"
 #include "avutil.h"
+#include "error.h"
 
 /**
  * @addtogroup lavu_mem
@@ -101,25 +101,25 @@
  */
 
 #if defined(__INTEL_COMPILER) && __INTEL_COMPILER < 1110 || defined(__SUNPRO_C)
-    #define DECLARE_ALIGNED(n,t,v)      t __attribute__ ((aligned (n))) v
-    #define DECLARE_ASM_ALIGNED(n,t,v)  t __attribute__ ((aligned (n))) v
-    #define DECLARE_ASM_CONST(n,t,v)    const t __attribute__ ((aligned (n))) v
+#define DECLARE_ALIGNED(n, t, v) t __attribute__((aligned(n))) v
+#define DECLARE_ASM_ALIGNED(n, t, v) t __attribute__((aligned(n))) v
+#define DECLARE_ASM_CONST(n, t, v) const t __attribute__((aligned(n))) v
 #elif defined(__DJGPP__)
-    #define DECLARE_ALIGNED(n,t,v)      t __attribute__ ((aligned (FFMIN(n, 16)))) v
-    #define DECLARE_ASM_ALIGNED(n,t,v)  t av_used __attribute__ ((aligned (FFMIN(n, 16)))) v
-    #define DECLARE_ASM_CONST(n,t,v)    static const t av_used __attribute__ ((aligned (FFMIN(n, 16)))) v
+#define DECLARE_ALIGNED(n, t, v) t __attribute__((aligned(FFMIN(n, 16)))) v
+#define DECLARE_ASM_ALIGNED(n, t, v) t av_used __attribute__((aligned(FFMIN(n, 16)))) v
+#define DECLARE_ASM_CONST(n, t, v) static const t av_used __attribute__((aligned(FFMIN(n, 16)))) v
 #elif defined(__GNUC__) || defined(__clang__)
-    #define DECLARE_ALIGNED(n,t,v)      t __attribute__ ((aligned (n))) v
-    #define DECLARE_ASM_ALIGNED(n,t,v)  t av_used __attribute__ ((aligned (n))) v
-    #define DECLARE_ASM_CONST(n,t,v)    static const t av_used __attribute__ ((aligned (n))) v
+#define DECLARE_ALIGNED(n, t, v) t __attribute__((aligned(n))) v
+#define DECLARE_ASM_ALIGNED(n, t, v) t av_used __attribute__((aligned(n))) v
+#define DECLARE_ASM_CONST(n, t, v) static const t av_used __attribute__((aligned(n))) v
 #elif defined(_MSC_VER)
-    #define DECLARE_ALIGNED(n,t,v)      __declspec(align(n)) t v
-    #define DECLARE_ASM_ALIGNED(n,t,v)  __declspec(align(n)) t v
-    #define DECLARE_ASM_CONST(n,t,v)    __declspec(align(n)) static const t v
+#define DECLARE_ALIGNED(n, t, v) __declspec(align(n)) t v
+#define DECLARE_ASM_ALIGNED(n, t, v) __declspec(align(n)) t v
+#define DECLARE_ASM_CONST(n, t, v) __declspec(align(n)) static const t v
 #else
-    #define DECLARE_ALIGNED(n,t,v)      t v
-    #define DECLARE_ASM_ALIGNED(n,t,v)  t v
-    #define DECLARE_ASM_CONST(n,t,v)    static const t v
+#define DECLARE_ALIGNED(n, t, v) t v
+#define DECLARE_ASM_ALIGNED(n, t, v) t v
+#define DECLARE_ASM_CONST(n, t, v) static const t v
 #endif
 
 /**
@@ -139,13 +139,15 @@
  * @def av_malloc_attrib
  * Function attribute denoting a malloc-like function.
  *
- * @see <a href="https://gcc.gnu.org/onlinedocs/gcc/Common-Function-Attributes.html#index-g_t_0040code_007bmalloc_007d-function-attribute-3251">Function attribute `malloc` in GCC's documentation</a>
+ * @see <a
+ * href="https://gcc.gnu.org/onlinedocs/gcc/Common-Function-Attributes.html#index-g_t_0040code_007bmalloc_007d-function-attribute-3251">Function
+ * attribute `malloc` in GCC's documentation</a>
  */
 
-#if AV_GCC_VERSION_AT_LEAST(3,1)
-    #define av_malloc_attrib __attribute__((__malloc__))
+#if AV_GCC_VERSION_AT_LEAST(3, 1)
+#define av_malloc_attrib __attribute__((__malloc__))
 #else
-    #define av_malloc_attrib
+#define av_malloc_attrib
 #endif
 
 /**
@@ -160,13 +162,15 @@
  *
  * @param ... One or two parameter indexes, separated by a comma
  *
- * @see <a href="https://gcc.gnu.org/onlinedocs/gcc/Common-Function-Attributes.html#index-g_t_0040code_007balloc_005fsize_007d-function-attribute-3220">Function attribute `alloc_size` in GCC's documentation</a>
+ * @see <a
+ * href="https://gcc.gnu.org/onlinedocs/gcc/Common-Function-Attributes.html#index-g_t_0040code_007balloc_005fsize_007d-function-attribute-3220">Function
+ * attribute `alloc_size` in GCC's documentation</a>
  */
 
-#if AV_GCC_VERSION_AT_LEAST(4,3)
-    #define av_alloc_size(...) __attribute__((alloc_size(__VA_ARGS__)))
+#if AV_GCC_VERSION_AT_LEAST(4, 3)
+#define av_alloc_size(...) __attribute__((alloc_size(__VA_ARGS__)))
 #else
-    #define av_alloc_size(...)
+#define av_alloc_size(...)
 #endif
 
 /**
@@ -282,8 +286,7 @@ void *av_realloc(void *ptr, size_t size) av_alloc_size(2);
  * @warning Unlike av_malloc(), the allocated memory is not guaranteed to be
  *          correctly aligned.
  */
-av_warn_unused_result
-int av_reallocp(void *ptr, size_t size);
+av_warn_unused_result int av_reallocp(void *ptr, size_t size);
 
 /**
  * Allocate, reallocate, or free a block of memory.
@@ -618,8 +621,7 @@ void av_dynarray_add(void *tab_ptr, int *nb_ptr, void *elem);
  * @return >=0 on success, negative otherwise
  * @see av_dynarray_add(), av_dynarray2_add()
  */
-av_warn_unused_result
-int av_dynarray_add_nofree(void *tab_ptr, int *nb_ptr, void *elem);
+av_warn_unused_result int av_dynarray_add_nofree(void *tab_ptr, int *nb_ptr, void *elem);
 
 /**
  * Add an element of size `elem_size` to a dynamic array.
@@ -644,8 +646,7 @@ int av_dynarray_add_nofree(void *tab_ptr, int *nb_ptr, void *elem);
  *         space
  * @see av_dynarray_add(), av_dynarray_add_nofree()
  */
-void *av_dynarray2_add(void **tab_ptr, int *nb_ptr, size_t elem_size,
-                       const uint8_t *elem_data);
+void *av_dynarray2_add(void **tab_ptr, int *nb_ptr, size_t elem_size, const uint8_t *elem_data);
 
 /**
  * @}
@@ -666,8 +667,7 @@ void *av_dynarray2_add(void **tab_ptr, int *nb_ptr, size_t elem_size,
  * @param[out] r   Pointer to the result of the operation
  * @return 0 on success, AVERROR(EINVAL) on overflow
  */
-static inline int av_size_mult(size_t a, size_t b, size_t *r)
-{
+static inline int av_size_mult(size_t a, size_t b, size_t *r) {
     size_t t = a * b;
     /* Hack inspired from glibc: don't try the division if nelem and elsize
      * are both less than sqrt(SIZE_MAX). */

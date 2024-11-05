@@ -31,11 +31,10 @@
 #include "avutil.h"
 #include "buffer.h"
 #include "dict.h"
+#include "pixfmt.h"
 #include "rational.h"
 #include "samplefmt.h"
-#include "pixfmt.h"
 #include "version.h"
-
 
 /**
  * @defgroup lavu_frame AVFrame
@@ -176,15 +175,14 @@ enum AVFrameSideDataType {
 };
 
 enum AVActiveFormatDescription {
-    AV_AFD_SAME         = 8,
-    AV_AFD_4_3          = 9,
-    AV_AFD_16_9         = 10,
-    AV_AFD_14_9         = 11,
-    AV_AFD_4_3_SP_14_9  = 13,
+    AV_AFD_SAME = 8,
+    AV_AFD_4_3 = 9,
+    AV_AFD_16_9 = 10,
+    AV_AFD_14_9 = 11,
+    AV_AFD_4_3_SP_14_9 = 13,
     AV_AFD_16_9_SP_14_9 = 14,
-    AV_AFD_SP_4_3       = 15,
+    AV_AFD_SP_4_3 = 15,
 };
-
 
 /**
  * Structure to hold side data for an AVFrame.
@@ -195,7 +193,7 @@ enum AVActiveFormatDescription {
 typedef struct AVFrameSideData {
     enum AVFrameSideDataType type;
     uint8_t *data;
-    int      size;
+    int size;
     AVDictionary *metadata;
     AVBufferRef *buf;
 } AVFrameSideData;
@@ -330,8 +328,7 @@ typedef struct AVFrame {
      * PTS copied from the AVPacket that was decoded to produce this frame.
      * @deprecated use the pts field instead
      */
-    attribute_deprecated
-    int64_t pkt_pts;
+    attribute_deprecated int64_t pkt_pts;
 #endif
 
     /**
@@ -364,8 +361,7 @@ typedef struct AVFrame {
     /**
      * @deprecated unused
      */
-    attribute_deprecated
-    uint64_t error[AV_NUM_DATA_POINTERS];
+    attribute_deprecated uint64_t error[AV_NUM_DATA_POINTERS];
 #endif
 
     /**
@@ -439,10 +435,10 @@ typedef struct AVFrame {
     /**
      * Number of elements in extended_buf.
      */
-    int        nb_extended_buf;
+    int nb_extended_buf;
 
     AVFrameSideData **side_data;
-    int            nb_side_data;
+    int nb_side_data;
 
 /**
  * @defgroup lavu_frame_flags AV_FRAME_FLAGS
@@ -455,14 +451,14 @@ typedef struct AVFrame {
 /**
  * The frame data may be corrupted, e.g. due to decoding errors.
  */
-#define AV_FRAME_FLAG_CORRUPT       (1 << 0)
+#define AV_FRAME_FLAG_CORRUPT (1 << 0)
 /**
  * A flag to mark the frames which need to be decoded, but shouldn't be output.
  */
-#define AV_FRAME_FLAG_DISCARD   (1 << 2)
-/**
- * @}
- */
+#define AV_FRAME_FLAG_DISCARD (1 << 2)
+    /**
+     * @}
+     */
 
     /**
      * Frame flags, a combination of @ref lavu_frame_flags
@@ -526,8 +522,8 @@ typedef struct AVFrame {
      * - decoding: set by libavcodec, read by user.
      */
     int decode_error_flags;
-#define FF_DECODE_ERROR_INVALID_BITSTREAM   1
-#define FF_DECODE_ERROR_MISSING_REFERENCE   2
+#define FF_DECODE_ERROR_INVALID_BITSTREAM 1
+#define FF_DECODE_ERROR_MISSING_REFERENCE 2
 
     /**
      * number of audio channels, only used for audio.
@@ -549,19 +545,15 @@ typedef struct AVFrame {
     /**
      * QP table
      */
-    attribute_deprecated
-    int8_t *qscale_table;
+    attribute_deprecated int8_t *qscale_table;
     /**
      * QP store stride
      */
-    attribute_deprecated
-    int qstride;
+    attribute_deprecated int qstride;
 
-    attribute_deprecated
-    int qscale_type;
+    attribute_deprecated int qscale_type;
 
-    attribute_deprecated
-    AVBufferRef *qp_table_buf;
+    attribute_deprecated AVBufferRef *qp_table_buf;
 #endif
     /**
      * For hwaccel-format frames, this should be a reference to the
@@ -615,56 +607,32 @@ typedef struct AVFrame {
  * Accessors for some AVFrame fields. These used to be provided for ABI
  * compatibility, and do not need to be used anymore.
  */
-attribute_deprecated
-int64_t av_frame_get_best_effort_timestamp(const AVFrame *frame);
-attribute_deprecated
-void    av_frame_set_best_effort_timestamp(AVFrame *frame, int64_t val);
-attribute_deprecated
-int64_t av_frame_get_pkt_duration         (const AVFrame *frame);
-attribute_deprecated
-void    av_frame_set_pkt_duration         (AVFrame *frame, int64_t val);
-attribute_deprecated
-int64_t av_frame_get_pkt_pos              (const AVFrame *frame);
-attribute_deprecated
-void    av_frame_set_pkt_pos              (AVFrame *frame, int64_t val);
-attribute_deprecated
-int64_t av_frame_get_channel_layout       (const AVFrame *frame);
-attribute_deprecated
-void    av_frame_set_channel_layout       (AVFrame *frame, int64_t val);
-attribute_deprecated
-int     av_frame_get_channels             (const AVFrame *frame);
-attribute_deprecated
-void    av_frame_set_channels             (AVFrame *frame, int     val);
-attribute_deprecated
-int     av_frame_get_sample_rate          (const AVFrame *frame);
-attribute_deprecated
-void    av_frame_set_sample_rate          (AVFrame *frame, int     val);
-attribute_deprecated
-AVDictionary *av_frame_get_metadata       (const AVFrame *frame);
-attribute_deprecated
-void          av_frame_set_metadata       (AVFrame *frame, AVDictionary *val);
-attribute_deprecated
-int     av_frame_get_decode_error_flags   (const AVFrame *frame);
-attribute_deprecated
-void    av_frame_set_decode_error_flags   (AVFrame *frame, int     val);
-attribute_deprecated
-int     av_frame_get_pkt_size(const AVFrame *frame);
-attribute_deprecated
-void    av_frame_set_pkt_size(AVFrame *frame, int val);
+attribute_deprecated int64_t av_frame_get_best_effort_timestamp(const AVFrame *frame);
+attribute_deprecated void av_frame_set_best_effort_timestamp(AVFrame *frame, int64_t val);
+attribute_deprecated int64_t av_frame_get_pkt_duration(const AVFrame *frame);
+attribute_deprecated void av_frame_set_pkt_duration(AVFrame *frame, int64_t val);
+attribute_deprecated int64_t av_frame_get_pkt_pos(const AVFrame *frame);
+attribute_deprecated void av_frame_set_pkt_pos(AVFrame *frame, int64_t val);
+attribute_deprecated int64_t av_frame_get_channel_layout(const AVFrame *frame);
+attribute_deprecated void av_frame_set_channel_layout(AVFrame *frame, int64_t val);
+attribute_deprecated int av_frame_get_channels(const AVFrame *frame);
+attribute_deprecated void av_frame_set_channels(AVFrame *frame, int val);
+attribute_deprecated int av_frame_get_sample_rate(const AVFrame *frame);
+attribute_deprecated void av_frame_set_sample_rate(AVFrame *frame, int val);
+attribute_deprecated AVDictionary *av_frame_get_metadata(const AVFrame *frame);
+attribute_deprecated void av_frame_set_metadata(AVFrame *frame, AVDictionary *val);
+attribute_deprecated int av_frame_get_decode_error_flags(const AVFrame *frame);
+attribute_deprecated void av_frame_set_decode_error_flags(AVFrame *frame, int val);
+attribute_deprecated int av_frame_get_pkt_size(const AVFrame *frame);
+attribute_deprecated void av_frame_set_pkt_size(AVFrame *frame, int val);
 #if FF_API_FRAME_QP
-attribute_deprecated
-int8_t *av_frame_get_qp_table(AVFrame *f, int *stride, int *type);
-attribute_deprecated
-int av_frame_set_qp_table(AVFrame *f, AVBufferRef *buf, int stride, int type);
+attribute_deprecated int8_t *av_frame_get_qp_table(AVFrame *f, int *stride, int *type);
+attribute_deprecated int av_frame_set_qp_table(AVFrame *f, AVBufferRef *buf, int stride, int type);
 #endif
-attribute_deprecated
-enum AVColorSpace av_frame_get_colorspace(const AVFrame *frame);
-attribute_deprecated
-void    av_frame_set_colorspace(AVFrame *frame, enum AVColorSpace val);
-attribute_deprecated
-enum AVColorRange av_frame_get_color_range(const AVFrame *frame);
-attribute_deprecated
-void    av_frame_set_color_range(AVFrame *frame, enum AVColorRange val);
+attribute_deprecated enum AVColorSpace av_frame_get_colorspace(const AVFrame *frame);
+attribute_deprecated void av_frame_set_colorspace(AVFrame *frame, enum AVColorSpace val);
+attribute_deprecated enum AVColorRange av_frame_get_color_range(const AVFrame *frame);
+attribute_deprecated void av_frame_set_color_range(AVFrame *frame, enum AVColorRange val);
 #endif
 
 /**
@@ -828,9 +796,7 @@ AVBufferRef *av_frame_get_plane_buffer(AVFrame *frame, int plane);
  *
  * @return newly added side data on success, NULL on error
  */
-AVFrameSideData *av_frame_new_side_data(AVFrame *frame,
-                                        enum AVFrameSideDataType type,
-                                        int size);
+AVFrameSideData *av_frame_new_side_data(AVFrame *frame, enum AVFrameSideDataType type, int size);
 
 /**
  * Add a new side data to a frame from an existing AVBufferRef
@@ -844,23 +810,19 @@ AVFrameSideData *av_frame_new_side_data(AVFrame *frame,
  *         the frame is unchanged and the AVBufferRef remains owned by
  *         the caller.
  */
-AVFrameSideData *av_frame_new_side_data_from_buf(AVFrame *frame,
-                                                 enum AVFrameSideDataType type,
-                                                 AVBufferRef *buf);
+AVFrameSideData *av_frame_new_side_data_from_buf(AVFrame *frame, enum AVFrameSideDataType type, AVBufferRef *buf);
 
 /**
  * @return a pointer to the side data of a given type on success, NULL if there
  * is no side data with such type in this frame.
  */
-AVFrameSideData *av_frame_get_side_data(const AVFrame *frame,
-                                        enum AVFrameSideDataType type);
+AVFrameSideData *av_frame_get_side_data(const AVFrame *frame, enum AVFrameSideDataType type);
 
 /**
  * If side data of the supplied type exists in the frame, free it and remove it
  * from the frame.
  */
 void av_frame_remove_side_data(AVFrame *frame, enum AVFrameSideDataType type);
-
 
 /**
  * Flags for frame cropping.
@@ -874,7 +836,7 @@ enum {
      * are explicitly documented to accept it. Use this flag only if you
      * absolutely know what you are doing.
      */
-    AV_FRAME_CROP_UNALIGNED     = 1 << 0,
+    AV_FRAME_CROP_UNALIGNED = 1 << 0,
 };
 
 /**

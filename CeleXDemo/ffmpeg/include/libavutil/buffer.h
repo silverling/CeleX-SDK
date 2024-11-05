@@ -90,7 +90,7 @@ typedef struct AVBufferRef {
     /**
      * Size of data in bytes.
      */
-    int      size;
+    int size;
 } AVBufferRef;
 
 /**
@@ -127,9 +127,8 @@ AVBufferRef *av_buffer_allocz(int size);
  *
  * @return an AVBufferRef referring to data on success, NULL on failure.
  */
-AVBufferRef *av_buffer_create(uint8_t *data, int size,
-                              void (*free)(void *opaque, uint8_t *data),
-                              void *opaque, int flags);
+AVBufferRef *av_buffer_create(uint8_t *data, int size, void (*free)(void *opaque, uint8_t *data), void *opaque,
+                              int flags);
 
 /**
  * Default free callback, which calls av_free() on the buffer data.
@@ -246,7 +245,7 @@ typedef struct AVBufferPool AVBufferPool;
  * (av_buffer_alloc()).
  * @return newly created buffer pool on success, NULL on error.
  */
-AVBufferPool *av_buffer_pool_init(int size, AVBufferRef* (*alloc)(int size));
+AVBufferPool *av_buffer_pool_init(int size, AVBufferRef *(*alloc)(int size));
 
 /**
  * Allocate and initialize a buffer pool with a more complex allocator.
@@ -262,8 +261,7 @@ AVBufferPool *av_buffer_pool_init(int size, AVBufferRef* (*alloc)(int size));
  *                  data.
  * @return newly created buffer pool on success, NULL on error.
  */
-AVBufferPool *av_buffer_pool_init2(int size, void *opaque,
-                                   AVBufferRef* (*alloc)(void *opaque, int size),
+AVBufferPool *av_buffer_pool_init2(int size, void *opaque, AVBufferRef *(*alloc)(void *opaque, int size),
                                    void (*pool_free)(void *opaque));
 
 /**

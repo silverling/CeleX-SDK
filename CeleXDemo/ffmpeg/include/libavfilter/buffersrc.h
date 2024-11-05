@@ -150,8 +150,7 @@ int av_buffersrc_parameters_set(AVFilterContext *ctx, AVBufferSrcParameters *par
  * This function is equivalent to av_buffersrc_add_frame_flags() with the
  * AV_BUFFERSRC_FLAG_KEEP_REF flag.
  */
-av_warn_unused_result
-int av_buffersrc_write_frame(AVFilterContext *ctx, const AVFrame *frame);
+av_warn_unused_result int av_buffersrc_write_frame(AVFilterContext *ctx, const AVFrame *frame);
 
 /**
  * Add a frame to the buffer source.
@@ -171,8 +170,7 @@ int av_buffersrc_write_frame(AVFilterContext *ctx, const AVFrame *frame);
  * This function is equivalent to av_buffersrc_add_frame_flags() without the
  * AV_BUFFERSRC_FLAG_KEEP_REF flag.
  */
-av_warn_unused_result
-int av_buffersrc_add_frame(AVFilterContext *ctx, AVFrame *frame);
+av_warn_unused_result int av_buffersrc_add_frame(AVFilterContext *ctx, AVFrame *frame);
 
 /**
  * Add a frame to the buffer source.
@@ -189,9 +187,7 @@ int av_buffersrc_add_frame(AVFilterContext *ctx, AVFrame *frame);
  * @return            >= 0 in case of success, a negative AVERROR code
  *                    in case of failure
  */
-av_warn_unused_result
-int av_buffersrc_add_frame_flags(AVFilterContext *buffer_src,
-                                 AVFrame *frame, int flags);
+av_warn_unused_result int av_buffersrc_add_frame_flags(AVFilterContext *buffer_src, AVFrame *frame, int flags);
 
 /**
  * Close the buffer source after EOF.

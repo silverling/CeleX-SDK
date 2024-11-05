@@ -41,7 +41,7 @@ typedef struct AVQSVDeviceContext {
  */
 typedef struct AVQSVFramesContext {
     mfxFrameSurface1 *surfaces;
-    int            nb_surfaces;
+    int nb_surfaces;
 
     /**
      * A combination of MFX_MEMTYPE_* describing the frame pool.
@@ -50,4 +50,3 @@ typedef struct AVQSVFramesContext {
 } AVQSVFramesContext;
 
 #endif /* AVUTIL_HWCONTEXT_QSV_H */
-

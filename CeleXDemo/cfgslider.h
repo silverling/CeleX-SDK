@@ -1,16 +1,15 @@
 ﻿#ifndef CFGSLIDER_H
 #define CFGSLIDER_H
 
-#include <stdint.h>
-#include <QWidget>
 #include <QLabel>
-#include <QSlider>
 #include <QLineEdit>
+#include <QSlider>
+#include <QWidget>
+#include <stdint.h>
 
-class CfgSlider : public QWidget
-{
+class CfgSlider : public QWidget {
     Q_OBJECT
-public:
+  public:
     explicit CfgSlider(QWidget *parent, uint32_t min, uint32_t max, uint32_t step, uint32_t value, QWidget *widgetSlot);
 
     uint32_t getValue();
@@ -25,28 +24,27 @@ public:
     void setMaximum(int value);
     int maximum();
 
-private:
+  private:
+  signals:
+    void valueChanged(uint32_t newValue, CfgSlider *slider);
 
-signals:
-    void valueChanged(uint32_t newValue, CfgSlider* slider);
-
-public slots:
+  public slots:
     void OnSliderValueChanged(int value);
     void onSliderReleased();
     void unblockSliderSignal();
     void onEditingFinished();
 
-private:
-    QLabel*      m_pLabelName;
-    QSlider*     m_pSlider;
+  private:
+    QLabel *m_pLabelName;
+    QSlider *m_pSlider;
 
-    QLabel*      m_pLabelMin;
-    QLabel*      m_pLabelMax;
-    QLabel*      m_pLabelValue;
-    QLineEdit*   m_pLineEditValue;
+    QLabel *m_pLabelMin;
+    QLabel *m_pLabelMax;
+    QLabel *m_pLabelValue;
+    QLineEdit *m_pLineEditValue;
 
-    uint32_t     m_uiValue;
-    std::string  m_strBiasType;
+    uint32_t m_uiValue;
+    std::string m_strBiasType;
 };
 
 #endif // CFGSLIDER_H

@@ -27,8 +27,8 @@
 #ifndef AVUTIL_ADLER32_H
 #define AVUTIL_ADLER32_H
 
-#include <stdint.h>
 #include "attributes.h"
+#include <stdint.h>
 
 /**
  * @defgroup lavu_adler32 Adler-32
@@ -50,8 +50,7 @@
  * @param len   size of input buffer
  * @return      updated checksum
  */
-unsigned long av_adler32_update(unsigned long adler, const uint8_t *buf,
-                                unsigned int len) av_pure;
+unsigned long av_adler32_update(unsigned long adler, const uint8_t *buf, unsigned int len) av_pure;
 
 /**
  * @}

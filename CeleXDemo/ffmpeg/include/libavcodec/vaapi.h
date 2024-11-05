@@ -30,9 +30,9 @@
  * Public libavcodec VA API header.
  */
 
-#include <stdint.h>
 #include "libavutil/attributes.h"
 #include "version.h"
+#include <stdint.h>
 
 #if FF_API_STRUCT_VAAPI_CONTEXT
 

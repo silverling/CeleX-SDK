@@ -80,7 +80,7 @@ typedef struct AVComponentDescriptor {
  */
 typedef struct AVPixFmtDescriptor {
     const char *name;
-    uint8_t nb_components;  ///< The number of components each pixel has, (1-4)
+    uint8_t nb_components; ///< The number of components each pixel has, (1-4)
 
     /**
      * Amount to shift the luma width right to find the chroma width.
@@ -125,27 +125,27 @@ typedef struct AVPixFmtDescriptor {
 /**
  * Pixel format is big-endian.
  */
-#define AV_PIX_FMT_FLAG_BE           (1 << 0)
+#define AV_PIX_FMT_FLAG_BE (1 << 0)
 /**
  * Pixel format has a palette in data[1], values are indexes in this palette.
  */
-#define AV_PIX_FMT_FLAG_PAL          (1 << 1)
+#define AV_PIX_FMT_FLAG_PAL (1 << 1)
 /**
  * All values of a component are bit-wise packed end to end.
  */
-#define AV_PIX_FMT_FLAG_BITSTREAM    (1 << 2)
+#define AV_PIX_FMT_FLAG_BITSTREAM (1 << 2)
 /**
  * Pixel format is an HW accelerated format.
  */
-#define AV_PIX_FMT_FLAG_HWACCEL      (1 << 3)
+#define AV_PIX_FMT_FLAG_HWACCEL (1 << 3)
 /**
  * At least one pixel component is not in the first data plane.
  */
-#define AV_PIX_FMT_FLAG_PLANAR       (1 << 4)
+#define AV_PIX_FMT_FLAG_PLANAR (1 << 4)
 /**
  * The pixel format contains RGB-like data (as opposed to YUV/grayscale).
  */
-#define AV_PIX_FMT_FLAG_RGB          (1 << 5)
+#define AV_PIX_FMT_FLAG_RGB (1 << 5)
 
 /**
  * The pixel format is "pseudo-paletted". This means that it contains a
@@ -163,7 +163,7 @@ typedef struct AVPixFmtDescriptor {
  * allocate a palette for AV_PIX_FMT_FLAG_PSEUDOPAL formats (it was required
  * before the deprecation, though).
  */
-#define AV_PIX_FMT_FLAG_PSEUDOPAL    (1 << 6)
+#define AV_PIX_FMT_FLAG_PSEUDOPAL (1 << 6)
 
 /**
  * The pixel format has an alpha channel. This is set on all formats that
@@ -174,18 +174,18 @@ typedef struct AVPixFmtDescriptor {
  * opaque, or use the equivalent pixel formats without alpha component, e.g.
  * AV_PIX_FMT_RGB0 (or AV_PIX_FMT_RGB24 etc.) instead of AV_PIX_FMT_RGBA.
  */
-#define AV_PIX_FMT_FLAG_ALPHA        (1 << 7)
+#define AV_PIX_FMT_FLAG_ALPHA (1 << 7)
 
 /**
  * The pixel format is following a Bayer pattern
  */
-#define AV_PIX_FMT_FLAG_BAYER        (1 << 8)
+#define AV_PIX_FMT_FLAG_BAYER (1 << 8)
 
 /**
  * The pixel format contains IEEE-754 floating point values. Precision (double,
  * single, or half) should be determined by the pixel size (64, 32, or 16 bits).
  */
-#define AV_PIX_FMT_FLAG_FLOAT        (1 << 9)
+#define AV_PIX_FMT_FLAG_FLOAT (1 << 9)
 
 /**
  * Return the number of bits per pixel used by the pixel format
@@ -235,8 +235,7 @@ enum AVPixelFormat av_pix_fmt_desc_get_id(const AVPixFmtDescriptor *desc);
  *
  * @return 0 on success, AVERROR(ENOSYS) on invalid or unknown pixel format
  */
-int av_pix_fmt_get_chroma_sub_sample(enum AVPixelFormat pix_fmt,
-                                     int *h_shift, int *v_shift);
+int av_pix_fmt_get_chroma_sub_sample(enum AVPixelFormat pix_fmt, int *h_shift, int *v_shift);
 
 /**
  * @return number of planes in pix_fmt, a negative AVERROR if pix_fmt is not a
@@ -325,8 +324,7 @@ const char *av_get_pix_fmt_name(enum AVPixelFormat pix_fmt);
  * corresponding info string, or a negative value to print the
  * corresponding header.
  */
-char *av_get_pix_fmt_string(char *buf, int buf_size,
-                            enum AVPixelFormat pix_fmt);
+char *av_get_pix_fmt_string(char *buf, int buf_size, enum AVPixelFormat pix_fmt);
 
 /**
  * Read a line from an image, and write the values of the
@@ -345,13 +343,10 @@ char *av_get_pix_fmt_string(char *buf, int buf_size,
  * data[0]. The behavior is undefined if the format is not paletted.
  * @param dst_element_size size of elements in dst array (2 or 4 byte)
  */
-void av_read_image_line2(void *dst, const uint8_t *data[4],
-                        const int linesize[4], const AVPixFmtDescriptor *desc,
-                        int x, int y, int c, int w, int read_pal_component,
-                        int dst_element_size);
+void av_read_image_line2(void *dst, const uint8_t *data[4], const int linesize[4], const AVPixFmtDescriptor *desc,
+                         int x, int y, int c, int w, int read_pal_component, int dst_element_size);
 
-void av_read_image_line(uint16_t *dst, const uint8_t *data[4],
-                        const int linesize[4], const AVPixFmtDescriptor *desc,
+void av_read_image_line(uint16_t *dst, const uint8_t *data[4], const int linesize[4], const AVPixFmtDescriptor *desc,
                         int x, int y, int c, int w, int read_pal_component);
 
 /**
@@ -369,12 +364,10 @@ void av_read_image_line(uint16_t *dst, const uint8_t *data[4],
  * values to write to the image line
  * @param src_element_size size of elements in src array (2 or 4 byte)
  */
-void av_write_image_line2(const void *src, uint8_t *data[4],
-                         const int linesize[4], const AVPixFmtDescriptor *desc,
-                         int x, int y, int c, int w, int src_element_size);
+void av_write_image_line2(const void *src, uint8_t *data[4], const int linesize[4], const AVPixFmtDescriptor *desc,
+                          int x, int y, int c, int w, int src_element_size);
 
-void av_write_image_line(const uint16_t *src, uint8_t *data[4],
-                         const int linesize[4], const AVPixFmtDescriptor *desc,
+void av_write_image_line(const uint16_t *src, uint8_t *data[4], const int linesize[4], const AVPixFmtDescriptor *desc,
                          int x, int y, int c, int w);
 
 /**
@@ -387,12 +380,12 @@ void av_write_image_line(const uint16_t *src, uint8_t *data[4],
  */
 enum AVPixelFormat av_pix_fmt_swap_endianness(enum AVPixelFormat pix_fmt);
 
-#define FF_LOSS_RESOLUTION  0x0001 /**< loss due to resolution change */
-#define FF_LOSS_DEPTH       0x0002 /**< loss due to color depth change */
-#define FF_LOSS_COLORSPACE  0x0004 /**< loss due to color space conversion */
-#define FF_LOSS_ALPHA       0x0008 /**< loss of alpha bits */
-#define FF_LOSS_COLORQUANT  0x0010 /**< loss due to color quantization */
-#define FF_LOSS_CHROMA      0x0020 /**< loss of chroma (e.g. RGB to gray conversion) */
+#define FF_LOSS_RESOLUTION 0x0001 /**< loss due to resolution change */
+#define FF_LOSS_DEPTH 0x0002      /**< loss due to color depth change */
+#define FF_LOSS_COLORSPACE 0x0004 /**< loss due to color space conversion */
+#define FF_LOSS_ALPHA 0x0008      /**< loss of alpha bits */
+#define FF_LOSS_COLORQUANT 0x0010 /**< loss due to color quantization */
+#define FF_LOSS_CHROMA 0x0020     /**< loss of chroma (e.g. RGB to gray conversion) */
 
 /**
  * Compute what kind of losses will occur when converting from one specific
@@ -412,9 +405,7 @@ enum AVPixelFormat av_pix_fmt_swap_endianness(enum AVPixelFormat pix_fmt);
  * @return Combination of flags informing you what kind of losses will occur
  * (maximum loss for an invalid dst_pix_fmt).
  */
-int av_get_pix_fmt_loss(enum AVPixelFormat dst_pix_fmt,
-                        enum AVPixelFormat src_pix_fmt,
-                        int has_alpha);
+int av_get_pix_fmt_loss(enum AVPixelFormat dst_pix_fmt, enum AVPixelFormat src_pix_fmt, int has_alpha);
 
 /**
  * Compute what kind of losses will occur when converting from one specific

@@ -63,8 +63,7 @@ void av_audio_fifo_free(AVAudioFifo *af);
  * @param nb_samples  initial allocation size, in samples
  * @return            newly allocated AVAudioFifo, or NULL on error
  */
-AVAudioFifo *av_audio_fifo_alloc(enum AVSampleFormat sample_fmt, int channels,
-                                 int nb_samples);
+AVAudioFifo *av_audio_fifo_alloc(enum AVSampleFormat sample_fmt, int channels, int nb_samples);
 
 /**
  * Reallocate an AVAudioFifo.
@@ -73,8 +72,7 @@ AVAudioFifo *av_audio_fifo_alloc(enum AVSampleFormat sample_fmt, int channels,
  * @param nb_samples  new allocation size, in samples
  * @return            0 if OK, or negative AVERROR code on failure
  */
-av_warn_unused_result
-int av_audio_fifo_realloc(AVAudioFifo *af, int nb_samples);
+av_warn_unused_result int av_audio_fifo_realloc(AVAudioFifo *af, int nb_samples);
 
 /**
  * Write data to an AVAudioFifo.

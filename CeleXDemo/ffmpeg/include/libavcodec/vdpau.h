@@ -30,7 +30,6 @@
  * Public libavcodec VDPAU header.
  */
 
-
 /**
  * @defgroup lavc_codec_hwaccel_vdpau VDPAU Decoder and Renderer
  * @ingroup lavc_codec_hwaccel
@@ -51,8 +50,8 @@
 
 #include <vdpau/vdpau.h>
 
-#include "libavutil/avconfig.h"
 #include "libavutil/attributes.h"
+#include "libavutil/avconfig.h"
 
 #include "avcodec.h"
 #include "version.h"
@@ -60,8 +59,7 @@
 struct AVCodecContext;
 struct AVFrame;
 
-typedef int (*AVVDPAU_Render2)(struct AVCodecContext *, struct AVFrame *,
-                               const VdpPictureInfo *, uint32_t,
+typedef int (*AVVDPAU_Render2)(struct AVCodecContext *, struct AVFrame *, const VdpPictureInfo *, uint32_t,
                                const VdpBitstreamBuffer *);
 
 /**
@@ -123,8 +121,7 @@ void av_vdpau_hwaccel_set_render2(AVVDPAUContext *, AVVDPAU_Render2);
  *
  * @return 0 on success, an AVERROR code on failure.
  */
-int av_vdpau_bind_context(AVCodecContext *avctx, VdpDevice device,
-                          VdpGetProcAddress *get_proc_address, unsigned flags);
+int av_vdpau_bind_context(AVCodecContext *avctx, VdpDevice device, VdpGetProcAddress *get_proc_address, unsigned flags);
 
 /**
  * Gets the parameters to create an adequate VDPAU video surface for the codec
@@ -143,8 +140,7 @@ int av_vdpau_bind_context(AVCodecContext *avctx, VdpDevice device,
  *
  * @return 0 on success, a negative AVERROR code on failure.
  */
-int av_vdpau_get_surface_parameters(AVCodecContext *avctx, VdpChromaType *type,
-                                    uint32_t *width, uint32_t *height);
+int av_vdpau_get_surface_parameters(AVCodecContext *avctx, VdpChromaType *type, uint32_t *width, uint32_t *height);
 
 /**
  * Allocate an AVVDPAUContext.
@@ -167,8 +163,7 @@ AVVDPAUContext *av_vdpau_alloc_context(void);
  *
  * @return 0 on success (non-negative), a negative AVERROR on failure.
  */
-attribute_deprecated
-int av_vdpau_get_profile(AVCodecContext *avctx, VdpDecoderProfile *profile);
+attribute_deprecated int av_vdpau_get_profile(AVCodecContext *avctx, VdpDecoderProfile *profile);
 #endif
 
 /* @}*/

@@ -299,8 +299,8 @@ int av_hwdevice_ctx_init(AVBufferRef *ref);
  *
  * @return 0 on success, a negative AVERROR code on failure.
  */
-int av_hwdevice_ctx_create(AVBufferRef **device_ctx, enum AVHWDeviceType type,
-                           const char *device, AVDictionary *opts, int flags);
+int av_hwdevice_ctx_create(AVBufferRef **device_ctx, enum AVHWDeviceType type, const char *device, AVDictionary *opts,
+                           int flags);
 
 /**
  * Create a new device of the specified type from an existing device.
@@ -323,10 +323,7 @@ int av_hwdevice_ctx_create(AVBufferRef **device_ctx, enum AVHWDeviceType type,
  * @param flags   Currently unused; should be set to zero.
  * @return        Zero on success, a negative AVERROR code on failure.
  */
-int av_hwdevice_ctx_create_derived(AVBufferRef **dst_ctx,
-                                   enum AVHWDeviceType type,
-                                   AVBufferRef *src_ctx, int flags);
-
+int av_hwdevice_ctx_create_derived(AVBufferRef **dst_ctx, enum AVHWDeviceType type, AVBufferRef *src_ctx, int flags);
 
 /**
  * Allocate an AVHWFramesContext tied to a given device context.
@@ -418,10 +415,8 @@ enum AVHWFrameTransferDirection {
  * @param flags currently unused, should be set to zero
  * @return 0 on success, a negative AVERROR code on failure.
  */
-int av_hwframe_transfer_get_formats(AVBufferRef *hwframe_ctx,
-                                    enum AVHWFrameTransferDirection dir,
+int av_hwframe_transfer_get_formats(AVBufferRef *hwframe_ctx, enum AVHWFrameTransferDirection dir,
                                     enum AVPixelFormat **formats, int flags);
-
 
 /**
  * This struct describes the constraints on hardware frames attached to
@@ -482,8 +477,7 @@ void *av_hwdevice_hwconfig_alloc(AVBufferRef *device_ctx);
  * @return AVHWFramesConstraints structure describing the constraints
  *         on the device, or NULL if not available.
  */
-AVHWFramesConstraints *av_hwdevice_get_hwframe_constraints(AVBufferRef *ref,
-                                                           const void *hwconfig);
+AVHWFramesConstraints *av_hwdevice_get_hwframe_constraints(AVBufferRef *ref, const void *hwconfig);
 
 /**
  * Free an AVHWFrameConstraints structure.
@@ -492,7 +486,6 @@ AVHWFramesConstraints *av_hwdevice_get_hwframe_constraints(AVBufferRef *ref,
  */
 void av_hwframe_constraints_free(AVHWFramesConstraints **constraints);
 
-
 /**
  * Flags to apply to frame mappings.
  */
@@ -500,11 +493,11 @@ enum {
     /**
      * The mapping must be readable.
      */
-    AV_HWFRAME_MAP_READ      = 1 << 0,
+    AV_HWFRAME_MAP_READ = 1 << 0,
     /**
      * The mapping must be writeable.
      */
-    AV_HWFRAME_MAP_WRITE     = 1 << 1,
+    AV_HWFRAME_MAP_WRITE = 1 << 1,
     /**
      * The mapped frame will be overwritten completely in subsequent
      * operations, so the current frame data need not be loaded.  Any values
@@ -516,7 +509,7 @@ enum {
      * the map or unmap steps.  Note that performance of direct mappings may
      * be much lower than normal memory.
      */
-    AV_HWFRAME_MAP_DIRECT    = 1 << 3,
+    AV_HWFRAME_MAP_DIRECT = 1 << 3,
 };
 
 /**
@@ -557,7 +550,6 @@ enum {
  */
 int av_hwframe_map(AVFrame *dst, const AVFrame *src, int flags);
 
-
 /**
  * Create and initialise an AVHWFramesContext as a mapping of another existing
  * AVHWFramesContext on a different device.
@@ -575,10 +567,7 @@ int av_hwframe_map(AVFrame *dst, const AVFrame *src, int flags);
  *               in the derived device.
  * @return       Zero on success, negative AVERROR code on failure.
  */
-int av_hwframe_ctx_create_derived(AVBufferRef **derived_frame_ctx,
-                                  enum AVPixelFormat format,
-                                  AVBufferRef *derived_device_ctx,
-                                  AVBufferRef *source_frame_ctx,
-                                  int flags);
+int av_hwframe_ctx_create_derived(AVBufferRef **derived_frame_ctx, enum AVPixelFormat format,
+                                  AVBufferRef *derived_device_ctx, AVBufferRef *source_frame_ctx, int flags);
 
 #endif /* AVUTIL_HWCONTEXT_H */

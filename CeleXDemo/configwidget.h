@@ -6,22 +6,21 @@
 class QLabel;
 class SliderWidget;
 
-class ConfigWidget : public QWidget
-{
+class ConfigWidget : public QWidget {
     Q_OBJECT
-public:
-    explicit ConfigWidget(CelexSensorDLL* pCelexSensor, QWidget *parent = 0);
+  public:
+    explicit ConfigWidget(CelexSensorDLL *pCelexSensor, QWidget *parent = 0);
 
-private:
+  private:
     void createResetSlider();
 
-signals:
+  signals:
 
-public slots:
-    void onValueChanged(uint32_t value, SliderWidget* slider);
+  public slots:
+    void onValueChanged(uint32_t value, SliderWidget *slider);
 
-private:
-    CelexSensorDLL* m_pCelexSensor;
+  private:
+    CelexSensorDLL *m_pCelexSensor;
 };
 
 #endif // CONFIGSETTINGWIDGET_H

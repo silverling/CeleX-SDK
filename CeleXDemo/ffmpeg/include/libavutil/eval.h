@@ -37,7 +37,8 @@ typedef struct AVExpr AVExpr;
  * @param res a pointer to a double where is put the result value of
  * the expression, or NAN in case of error
  * @param s expression as a zero terminated string, for example "1+2^3+5*5+sin(2/3)"
- * @param const_names NULL terminated array of zero terminated strings of constant identifiers, for example {"PI", "E", 0}
+ * @param const_names NULL terminated array of zero terminated strings of constant identifiers, for example {"PI", "E",
+ * 0}
  * @param const_values a zero terminated array of values for the identifiers from const_names
  * @param func1_names NULL terminated array of zero terminated strings of funcs1 identifiers
  * @param funcs1 NULL terminated array of function pointers for functions which take 1 argument
@@ -48,10 +49,9 @@ typedef struct AVExpr AVExpr;
  * @return >= 0 in case of success, a negative value corresponding to an
  * AVERROR code otherwise
  */
-int av_expr_parse_and_eval(double *res, const char *s,
-                           const char * const *const_names, const double *const_values,
-                           const char * const *func1_names, double (* const *funcs1)(void *, double),
-                           const char * const *func2_names, double (* const *funcs2)(void *, double, double),
+int av_expr_parse_and_eval(double *res, const char *s, const char *const *const_names, const double *const_values,
+                           const char *const *func1_names, double (*const *funcs1)(void *, double),
+                           const char *const *func2_names, double (*const *funcs2)(void *, double, double),
                            void *opaque, int log_offset, void *log_ctx);
 
 /**
@@ -62,7 +62,8 @@ int av_expr_parse_and_eval(double *res, const char *s,
  * The pointed to AVExpr must be freed with av_expr_free() by the user
  * when it is not needed anymore.
  * @param s expression as a zero terminated string, for example "1+2^3+5*5+sin(2/3)"
- * @param const_names NULL terminated array of zero terminated strings of constant identifiers, for example {"PI", "E", 0}
+ * @param const_names NULL terminated array of zero terminated strings of constant identifiers, for example {"PI", "E",
+ * 0}
  * @param func1_names NULL terminated array of zero terminated strings of funcs1 identifiers
  * @param funcs1 NULL terminated array of function pointers for functions which take 1 argument
  * @param func2_names NULL terminated array of zero terminated strings of funcs2 identifiers
@@ -71,11 +72,9 @@ int av_expr_parse_and_eval(double *res, const char *s,
  * @return >= 0 in case of success, a negative value corresponding to an
  * AVERROR code otherwise
  */
-int av_expr_parse(AVExpr **expr, const char *s,
-                  const char * const *const_names,
-                  const char * const *func1_names, double (* const *funcs1)(void *, double),
-                  const char * const *func2_names, double (* const *funcs2)(void *, double, double),
-                  int log_offset, void *log_ctx);
+int av_expr_parse(AVExpr **expr, const char *s, const char *const *const_names, const char *const *func1_names,
+                  double (*const *funcs1)(void *, double), const char *const *func2_names,
+                  double (*const *funcs2)(void *, double, double), int log_offset, void *log_ctx);
 
 /**
  * Evaluate a previously parsed expression.

@@ -35,8 +35,8 @@
 #define _WIN32_WINNT 0x0602
 #endif
 
-#include <stdint.h>
 #include <d3d11.h>
+#include <stdint.h>
 
 /**
  * @defgroup lavc_codec_hwaccel_d3d11va Direct3D11
@@ -46,7 +46,8 @@
  */
 
 #define FF_DXVA2_WORKAROUND_SCALING_LIST_ZIGZAG 1 ///< Work around for Direct3D11 and old UVD/UVD+ ATI video cards
-#define FF_DXVA2_WORKAROUND_INTEL_CLEARVIDEO    2 ///< Work around for Direct3D11 and old Intel GPUs with ClearVideo interface
+#define FF_DXVA2_WORKAROUND_INTEL_CLEARVIDEO                                                                           \
+    2 ///< Work around for Direct3D11 and old Intel GPUs with ClearVideo interface
 
 /**
  * This structure is used to provides the necessary configurations and data
@@ -63,8 +64,8 @@ typedef struct AVD3D11VAContext {
     ID3D11VideoDecoder *decoder;
 
     /**
-      * D3D11 VideoContext
-      */
+     * D3D11 VideoContext
+     */
     ID3D11VideoContext *video_context;
 
     /**
@@ -93,9 +94,9 @@ typedef struct AVD3D11VAContext {
     unsigned report_id;
 
     /**
-      * Mutex to access video_context
-      */
-    HANDLE  context_mutex;
+     * Mutex to access video_context
+     */
+    HANDLE context_mutex;
 } AVD3D11VAContext;
 
 /**
