@@ -1,0 +1,22 @@
+{
+  "name": "celex-sdk",
+  "version": "0.0.1",
+  "dependencies": [
+    "libusb",
+    {
+      "name": "opencv",
+      "default-features": false,
+      "version>=": "4.8.0#1"
+    },
+    {
+      "name": "opencv4",
+      "default-features": false,
+      "features": [
+        "jpeg",
+        "png",
+        "tiff",
+        "webp"
+      ]
+    }
+  ]
+}

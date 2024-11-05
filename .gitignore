@@ -2,7 +2,7 @@
 .DS_Store
 
 # Build cache
-build/
+/build*
 
 # Editor files
-.vscode/
+/.vscode

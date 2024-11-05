@@ -3,10 +3,9 @@ cmake_minimum_required(VERSION 3.12)
 project(CeleXSDK CXX)
 set(CMAKE_CXX_STANDARD 11)
 
-find_package(OpenCV 4 REQUIRED)
+find_package(OpenCV 4 CONFIG REQUIRED)
 find_package(PkgConfig REQUIRED)
-    pkg_check_modules(libusb REQUIRED libusb-1.0)
-find_package(Threads REQUIRED)
+    pkg_check_modules(libusb REQUIRED IMPORTED_TARGET libusb-1.0)
 
 
 set(CELEX_SRCS 
@@ -32,13 +31,10 @@ set(CELEX_SRCS
     CeleX/cx3driver/bulktransfer.cpp
 )
 
-add_library(CeleX SHARED ${CELEX_SRCS})
+add_library(CeleX STATIC ${CELEX_SRCS})
 
-target_include_directories(CeleX PUBLIC ${OpenCV_INCLUDE_DIRS})
-target_link_libraries(CeleX PUBLIC ${OpenCV_LIBS})
-target_include_directories(CeleX PUBLIC ${libusb_INCLUDE_DIRS})
-target_link_libraries(CeleX PUBLIC ${libusb_LIBRARIES})
-target_link_libraries(CeleX PUBLIC Threads::Threads)
+target_link_libraries(CeleX PRIVATE opencv_core)
+target_link_libraries(CeleX PRIVATE PkgConfig::libusb)
 
 # Samples
 set(CeleX_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/CeleX/include)
