@@ -17,6 +17,8 @@
                 "tiff",
                 "webp"
             ]
-        }
+        },
+        "qt5-base",
+        "spdlog"
     ]
 }
